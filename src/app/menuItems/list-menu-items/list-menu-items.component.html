@@ -1,0 +1,10 @@
+<div class="panel panel-primary"
+    *ngFor="let mi of menuItems">
+
+    <div class="panel-heading">
+        <h3>{{ mi.name }}</h3>
+        <h3>{{ mi.price }}</h3>
+        <img [src]="mi.photoPath" alt="">
+    </div>
+        
+</div>

@@ -52,6 +52,7 @@
               "src/assets"
             ],
             "styles": [
+              "../node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -148,5 +149,8 @@
       }
     }
   },
-  "defaultProject": "OnlineRestaurant"
+  "defaultProject": "OnlineRestaurant",
+  "cli": {
+    "analytics": "1811e227-7a17-400d-a957-089b083ce3e0"
+  }
 }
