@@ -1,1 +1,19 @@
-<!-- <app-list-menu-items></app-list-menu-items> -->
+<div class="container">
+<nav class="navbar navbar-inverse">
+    <ul class="nav navbar-nav">
+        <li>
+            <a routerLink='list'>Menu Items</a>
+        </li>
+        <li>
+            <a routerLink='create'>Create Menu Item</a>
+        </li>
+        <li>
+            <a routerLink='cart'>
+                Cart <span class="glyphicon glyphicon-shopping-cart"></span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+<router-outlet></router-outlet>
+</div>

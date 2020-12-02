@@ -1,7 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-const routes: Routes = [];
+import { ListMenuItemsComponent } from './menuItems/list-menu-items.component';
+import { CreateMenuItemComponent } from './menuItems/create-menu-item.component';
+import { CartComponent } from './cart/cart.component';
+
+const routes: Routes = [
+  { path: 'list', component: ListMenuItemsComponent },
+  { path: 'create', component: CreateMenuItemComponent },
+  { path: 'cart', component: CartComponent },
+  { path: '', redirectTo: '/list', pathMatch: 'full' }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
