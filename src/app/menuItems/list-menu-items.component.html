@@ -31,8 +31,12 @@
                     <div class="row">
                         <div class="col-xs-12">
                             <hr>
-                            <a href="#">Add to the cart</a><br>
-                            <input type="number" />
+                            <label for="qty">Qty: </label>
+                            <input #myInput id="qty" type="number" min="1" max="20" value="1"
+                                class="inputnumber" /><br>
+                           
+                            <a (click)="test(mi.id, +myInput.value)">Add to the cart</a><br>
+                            
                         </div>
                         
                     </div>                   

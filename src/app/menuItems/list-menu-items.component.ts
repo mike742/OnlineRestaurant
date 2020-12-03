@@ -17,4 +17,11 @@ export class ListMenuItemsComponent implements OnInit {
     this.menuItems = this.service.getMenuItems();
   }
 
+  test(id?: number, qty?: number) : void {
+    // console.log("test() called: id=" + id + " qty: "+ qty);
+    
+    localStorage.setItem( 'cartData', JSON.stringify( {'id': id, 'qty': qty } ) );
+    console.log( localStorage.getItem('cartData') );
+  }
+
 }

@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { ListMenuItemsComponent } from './menuItems/list-menu-items.component';
 import { CreateMenuItemComponent } from './menuItems/create-menu-item.component';
 import { CartComponent } from './cart/cart.component';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListMenuItemsComponent,
     CreateMenuItemComponent,
-    CartComponent
+    CartComponent,
+    WelcomeComponent
   ],
   imports: [
     BrowserModule,

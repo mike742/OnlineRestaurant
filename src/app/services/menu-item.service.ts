@@ -37,8 +37,24 @@ export class MenuItemService {
     return this.menuItems;
   }
 
+  private getSelectedIndex(id: number) {
+    for(var i = 0; this.getMenuItem.length; ++i) {
+      
+      if(this.menuItems[i].id == id) {
+        return i;
+      }
+    }
+
+    return -1;
+  }
+
   getMenuItem(id: number) : MenuItem {
     
-    return this.menuItems[ id ];
+    return this.menuItems[ this.getSelectedIndex(id) ];
+  }
+
+  addMenuItem(mi: MenuItem) {
+    
+    this.menuItems.push(mi);
   }
 }

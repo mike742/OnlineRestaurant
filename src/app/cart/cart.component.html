@@ -1,1 +1,9 @@
-<p>cart works!</p>
+<div class="container" *ngFor="let i of items">
+    <div class="panel panel-succes">
+        <div class="panel-heading">
+            {{  i.menuItem["name"]  }}
+            Quantity: {{ i.quantity }}
+            Total: {{ i.quantity * i.menuItem["price"]  }}
+        </div>
+    </div>
+</div>
