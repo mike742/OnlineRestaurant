@@ -7,6 +7,7 @@ import { ListMenuItemsComponent } from './menuItems/list-menu-items.component';
 import { CreateMenuItemComponent } from './menuItems/create-menu-item.component';
 import { CartComponent } from './cart/cart.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+  import { FormsModule }   from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,9 +18,10 @@ import { WelcomeComponent } from './welcome/welcome.component';
     WelcomeComponent
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+    BrowserModule, 
+    AppRoutingModule,
+    FormsModule
+  ], 
   providers: [],
   bootstrap: [AppComponent]
 })

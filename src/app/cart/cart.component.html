@@ -1,9 +1,14 @@
-<div class="container" *ngFor="let i of items">
+<div class="container" *ngFor="let i of items; let idx = index">
     <div class="panel panel-succes">
         <div class="panel-heading">
+            
             {{  i.menuItem["name"]  }}
             x  {{ i.quantity }}
             : ${{ i.quantity * i.menuItem.price  }}
+
+            <a class="glyphicon glyphicon-remove-circle" 
+                title="remove item"
+                (click)="remove(idx)" ></a>
         </div> 
     </div>
 </div>

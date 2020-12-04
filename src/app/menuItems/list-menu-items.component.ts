@@ -22,6 +22,8 @@ export class ListMenuItemsComponent implements OnInit {
     let cartData = localStorage.getItem( 'cartData' ) || '[]';
     let json = JSON.parse(cartData);
 
+    // if
+
     json.push( JSON.stringify( {'id': id, 'qty': qty } ) );
     localStorage.setItem(  'cartData', JSON.stringify(json) );
 

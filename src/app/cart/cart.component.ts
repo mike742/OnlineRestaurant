@@ -22,6 +22,10 @@ export class CartComponent implements OnInit {
   } 
 
   loadCart() : void {
+
+    this.items = [];
+    this.total = 0;
+
     let dataSourse = localStorage.getItem('cartData') || null; 
 
     if(dataSourse != null) {
@@ -42,4 +46,18 @@ export class CartComponent implements OnInit {
     } 
   }
 
+  remove(idx: number): void {
+    // console.log(idx);
+
+    let dataSourse = localStorage.getItem('cartData') || null; 
+
+    if(dataSourse != null) {
+      let cartData = JSON.parse(dataSourse);
+      
+      cartData.splice(idx, 1);
+      localStorage.setItem(  'cartData', JSON.stringify(cartData));
+    }
+
+    this.loadCart();
+  }
 }
