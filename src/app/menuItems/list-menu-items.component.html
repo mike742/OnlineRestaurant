@@ -1,7 +1,7 @@
 <div class="panel panel-success" *ngFor="let mi of menuItems">
 
     <div class="panel-heading">
-        <h3>{{ mi.name }}</h3>
+        <h3 class="panel-title">{{ mi.name }}</h3>
     </div>
 
     <div class="panel-body">
@@ -35,7 +35,7 @@
                             <input #myInput id="qty" type="number" min="1" max="20" value="1"
                                 class="inputnumber" /><br>
                            
-                            <a (click)="test(mi.id, +myInput.value)">Add to the cart</a><br>
+                            <a (click)="addCartData(mi.id, +myInput.value)">Add to the cart</a><br>
                             
                         </div>
                         
@@ -45,7 +45,9 @@
         </div>
     </div>
 
-    <div class="panel-footer">Panel footer</div>
+    <div class="panel-footer">
+        <a class="glyphicon glyphicon-screenshot" (click)="clearCartData()" ></a>
+    </div>
 </div>		
 
 <!-- <h3>{{ mi.price }}</h3>

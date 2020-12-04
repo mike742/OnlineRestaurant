@@ -2,8 +2,12 @@
     <div class="panel panel-succes">
         <div class="panel-heading">
             {{  i.menuItem["name"]  }}
-            Quantity: {{ i.quantity }}
-            Total: {{ i.quantity * i.menuItem["price"]  }}
-        </div>
+            x  {{ i.quantity }}
+            : ${{ i.quantity * i.menuItem.price  }}
+        </div> 
     </div>
+</div>
+
+<div class="panel-footer">
+    <b>Total: ${{ total }}</b>
 </div>

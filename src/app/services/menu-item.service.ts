@@ -14,19 +14,22 @@ export class MenuItemService {
         id: 1,
         name: 'Pasta #1',
         price: 11.15,
-        photoPath: 'assets/images/pasta-1.jpg'
+        photoPath: 'assets/images/pasta-1.jpg',
+        description: "yammy pasta"
       },
       {
         id: 2,
         name: 'Pizza #1',
         price: 11.15,
-        photoPath: 'assets/images/pizza-1.jpg'
+        photoPath: 'assets/images/pizza-1.jpg',
+        description: "yammy Pizza"
       },
       {
         id: 3,
         name: 'Pasta #2',
         price: 22.05,
-        photoPath: 'assets/images/pasta-2.jpg'
+        photoPath: 'assets/images/pasta-2.jpg',
+        description: "yammy pasta"
       },
   
     ];

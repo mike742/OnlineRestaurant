@@ -17,11 +17,20 @@ export class ListMenuItemsComponent implements OnInit {
     this.menuItems = this.service.getMenuItems();
   }
 
-  test(id?: number, qty?: number) : void {
-    // console.log("test() called: id=" + id + " qty: "+ qty);
-    
-    localStorage.setItem( 'cartData', JSON.stringify( {'id': id, 'qty': qty } ) );
+  addCartData(id?: number, qty?: number) : void {
+    // debugger;
+    let cartData = localStorage.getItem( 'cartData' ) || '[]';
+    let json = JSON.parse(cartData);
+
+    json.push( JSON.stringify( {'id': id, 'qty': qty } ) );
+    localStorage.setItem(  'cartData', JSON.stringify(json) );
+
     console.log( localStorage.getItem('cartData') );
   }
 
-}
+  clearCartData() : void {
+    localStorage.setItem( 'cartData', '' );
+    console.log( localStorage.getItem('cartData') );
+  }
+
+} 

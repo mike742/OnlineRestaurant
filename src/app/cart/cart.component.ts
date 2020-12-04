@@ -13,22 +13,33 @@ import { MenuItemService } from '../services/menu-item.service';
 export class CartComponent implements OnInit {
 
   items: Item[] = [];
+  total: number = 0;
 
   constructor(private service: MenuItemService) { }
 
   ngOnInit(): void { 
+    this.loadCart();
+  } 
 
-    let dataSourse = localStorage.getItem('cartData'); 
-    // console.log(dataSourse);
+  loadCart() : void {
+    let dataSourse = localStorage.getItem('cartData') || null; 
 
     if(dataSourse != null) {
-      let menuItem = this.service.getMenuItem( JSON.parse(dataSourse)["id"] );
-      let q: number = JSON.parse(dataSourse)["qty"]; 
 
-      let item = new Item(menuItem, q);
-      this.items.push(item);
-      // console.log(item);
-    }
+      let cartData = JSON.parse(dataSourse);
+
+      console.log(cartData);
+
+      for(let i = 0; i < cartData.length; ++i) {
+        let menuItem = this.service.getMenuItem( JSON.parse(cartData[i]).id );
+        let q: number = JSON.parse(cartData[i]).qty; 
+
+        let item = new Item(menuItem, q);
+        
+        this.total += menuItem.price * q;
+        this.items.push(item);
+      }
+    } 
   }
 
 }
