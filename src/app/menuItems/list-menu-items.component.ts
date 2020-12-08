@@ -14,7 +14,13 @@ export class ListMenuItemsComponent implements OnInit {
   constructor(private service: MenuItemService) { }
 
   ngOnInit(): void {
-    this.menuItems = this.service.getMenuItems();
+
+    this.service.get()
+    .subscribe(
+      (data: MenuItem[]) => {
+        this.menuItems = data;
+      }
+    );
   }
 
   addCartData(id?: number, qty?: number) : void {
@@ -35,4 +41,7 @@ export class ListMenuItemsComponent implements OnInit {
     console.log( localStorage.getItem('cartData') );
   }
 
-} 
+  ifLogin() {
+    return !this.service.invalidLogin;
+  }
+}  

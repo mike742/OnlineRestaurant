@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import { MenuItem } from '../model/menuItem.model';
+import { HttpClient, HttpHeaders } from '@angular/common/http'
+
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,34 +10,24 @@ import { MenuItem } from '../model/menuItem.model';
 export class MenuItemService {
 
   private menuItems: MenuItem[] = [];
+  private API_SERVER = 'https://localhost:5001/MenuItem';
+  invalidLogin: boolean = true;
 
-  constructor() { 
-     this.menuItems = [
-      {
-        id: 1,
-        name: 'Pasta #1',
-        price: 11.15,
-        photoPath: 'assets/images/pasta-1.jpg',
-        description: "yammy pasta"
-      },
-      {
-        id: 2,
-        name: 'Pizza #1',
-        price: 11.15,
-        photoPath: 'assets/images/pizza-1.jpg',
-        description: "yammy Pizza"
-      },
-      {
-        id: 3,
-        name: 'Pasta #2',
-        price: 22.05,
-        photoPath: 'assets/images/pasta-2.jpg',
-        description: "yammy pasta"
-      },
-  
-    ];
+  constructor(private http: HttpClient) { }
+
+  get() : Observable<MenuItem[]> {
+
+    return this.http.get<MenuItem[]>(this.API_SERVER);
+    
   }
 
+
+
+
+
+
+
+  
   getMenuItems(): MenuItem[] {
     
     return this.menuItems;

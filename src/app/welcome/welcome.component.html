@@ -1,2 +1,13 @@
-Login: <br>
-Passwork: 
+<h1>Login Page</h1>
+
+<form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+
+    <label for="username">User Name</label>
+    <input type="text" id="username" name="username" ngModel class="form-control" />
+
+    <label for="password">Password</label>
+    <input type="text" id="password" name="password" ngModel class="form-control" />
+
+    <hr>
+    <button type="submit">Sign in</button>
+</form>
