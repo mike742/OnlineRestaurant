@@ -10,19 +10,37 @@ import { Observable } from 'rxjs';
 export class MenuItemService {
 
   private menuItems: MenuItem[] = [];
-  private API_SERVER = 'https://localhost:5001/MenuItem';
+  private API_SERVER = 'https://localhost:5001/MenuItem/';
   invalidLogin: boolean = true;
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient
+    ) { }
 
   get() : Observable<MenuItem[]> {
-
     return this.http.get<MenuItem[]>(this.API_SERVER);
-    
   }
 
+  getById(id: number) : Observable<MenuItem> {
+    return this.http.get<MenuItem>(this.API_SERVER + id);
+  }
 
+  getMenuItem(id: number) : MenuItem {
+    
+    let res: MenuItem = new MenuItem(0, '', 0, '');
+    //debugger;
+    this.getById(id).subscribe(
+      (data: MenuItem) => {
+        res.id = data.id;
+        res.name = data.name;
+        res.price = data.price;
+        res.photoPath = data.photoPath;
+      }
 
+    );
+
+    return res;
+  }
 
 
 
@@ -44,10 +62,7 @@ export class MenuItemService {
     return -1;
   }
 
-  getMenuItem(id: number) : MenuItem {
-    
-    return this.menuItems[ this.getSelectedIndex(id) ];
-  }
+
 
   addMenuItem(mi: MenuItem) {
     

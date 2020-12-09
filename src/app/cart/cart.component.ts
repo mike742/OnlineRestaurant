@@ -27,7 +27,7 @@ export class CartComponent implements OnInit {
     this.total = 0;
 
     let dataSourse = localStorage.getItem('cartData') || null; 
-
+    //debugger;
     if(dataSourse != null) {
 
       let cartData = JSON.parse(dataSourse);
@@ -36,14 +36,24 @@ export class CartComponent implements OnInit {
 
       for(let i = 0; i < cartData.length; ++i) {
         let menuItem = this.service.getMenuItem( JSON.parse(cartData[i]).id );
+         
         let q: number = JSON.parse(cartData[i]).qty; 
 
         let item = new Item(menuItem, q);
         
-        this.total += menuItem.price * q;
+        //this.total += menuItem.price * q;
+        //debugger;
         this.items.push(item);
       }
     } 
+  }
+
+  getTotal() {
+     return this.items.reduce( (a, b) => a + b.menuItem.price * b.quantity, 0 ).toFixed(2)
+  }
+
+  onchange(i: number, value: number) {
+    this.items[i].quantity = value;
   }
 
   remove(idx: number): void {

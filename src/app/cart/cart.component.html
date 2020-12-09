@@ -1,18 +1,32 @@
 <div class="container" *ngFor="let i of items; let idx = index">
     <div class="panel panel-succes">
         <div class="panel-heading">
-            
-            {{  i.menuItem["name"]  }}
-            x  {{ i.quantity }}
-            : ${{ i.quantity * i.menuItem.price  }}
+            <div class="row">
+                <div class="col-xs-1">
+                    {{  i.menuItem["name"]  }}
+                </div>
+                <div class="col-xs-3">
+                    <input #box type="number" [value]="i.quantity" min="1" max="20"
+                        (change)="onchange(idx, +box.value)" />
+                    <!-- x  {{ i.quantity }} -->
+                </div>
+                <div class="col-xs-5">
+                    <span style="border: 1px solid red;">
+                        : ${{ i.quantity * i.menuItem.price  }}
+                    </span>
+                    
+                </div>
+                <div class="col-xs-3">
+                    <a class="glyphicon glyphicon-remove-circle" 
+                        title="remove item"
+                        (click)="remove(idx)" ></a>
+                </div>
 
-            <a class="glyphicon glyphicon-remove-circle" 
-                title="remove item"
-                (click)="remove(idx)" ></a>
+            </div>
         </div> 
     </div>
 </div>
 
 <div class="panel-footer">
-    <b>Total: ${{ total }}</b>
+    <b>Total: ${{ getTotal() }}</b>
 </div>
