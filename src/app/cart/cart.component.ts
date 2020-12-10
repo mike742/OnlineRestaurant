@@ -42,7 +42,7 @@ export class CartComponent implements OnInit {
         let item = new Item(menuItem, q);
         
         //this.total += menuItem.price * q;
-        //debugger;
+        debugger;
         this.items.push(item);
       }
     } 

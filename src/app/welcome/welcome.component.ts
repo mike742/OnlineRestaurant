@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-
+import { NgForm }   from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router } from "@angular/router";
 import { MenuItemService } from '../../app/services/menu-item.service';
-import { Router } from '@angular/router';
-import { Route } from '@angular/compiler/src/core';
-
 
 @Component({
   selector: 'app-welcome',
@@ -13,44 +10,37 @@ import { Route } from '@angular/compiler/src/core';
   styleUrls: ['./welcome.component.css']
 })
 export class WelcomeComponent implements OnInit {
+  
+  invalidLogin: boolean = false;
 
   constructor(
-    private http: HttpClient,
-    private service: MenuItemService,
-    private router: Router
-    //private header: HttpHeaders
-  ) { }
+      private http: HttpClient, 
+      private router: Router,
+      private service: MenuItemService) {  }
 
   ngOnInit(): void {
   }
+  
+  login(form: NgForm) {
+    const credentials = JSON.stringify(form.value);
+    
+    console.log(JSON.stringify(form.value));
 
-  login(form: NgForm ) {
+    this.http.post("https://localhost:5001/Auth/login", credentials, {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json"
+      })
+    }).subscribe(response => {
+      const token = (<any>response).token;
+      localStorage.setItem("jwt", token);
+      this.invalidLogin = false;
+      this.service.invalidLogin = false;
 
-    const url = 'https://localhost:5001/Auth/login';
-    const body = JSON.stringify(form.value);
-    const header = new HttpHeaders({
-      "Content-Type": "application/json"
+      this.router.navigate(["/list"]);
+    }, err => {
+      this.invalidLogin = true;
+      this.service.invalidLogin = true;
+      
     });
-
-    this.http.post(url, body, { headers: header })
-      .subscribe(
-        (responce: any) => {
-          const token = responce.token;
-          console.log(token);
-          this.service.invalidLogin = false;
-
-          this.router.navigate(["/list"]);
-        },
-        err => {
-          console.log(err.message);
-          this.service.invalidLogin = true;
-        }
-      );
-
-
   }
 }
-/*
-johndoe
-def@123
-*/

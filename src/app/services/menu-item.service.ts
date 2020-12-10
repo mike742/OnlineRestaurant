@@ -10,8 +10,9 @@ import { Observable } from 'rxjs';
 export class MenuItemService {
 
   private menuItems: MenuItem[] = [];
-  private API_SERVER = 'https://localhost:5001/MenuItem/';
-  invalidLogin: boolean = true;
+  private API_SERVER = 'https://localhost:5001/MenuItem';
+  invalidLogin: boolean = false;
+  private status = "";
 
   constructor(
     private http: HttpClient
@@ -22,7 +23,7 @@ export class MenuItemService {
   }
 
   getById(id: number) : Observable<MenuItem> {
-    return this.http.get<MenuItem>(this.API_SERVER + id);
+    return this.http.get<MenuItem>(this.API_SERVER + '/'+ id);
   }
 
   getMenuItem(id: number) : MenuItem {
@@ -42,7 +43,19 @@ export class MenuItemService {
     return res;
   }
 
+  post(mi: MenuItem) : Observable<MenuItem>  {
+    const httpHeaders = { headers:new HttpHeaders({'Content-Type': 'application/json'}) };
 
+    return this.http
+      .post<MenuItem>(this.API_SERVER, JSON.stringify(mi), httpHeaders);
+  }
+
+  delete(id: number) {
+    this.http.delete(this.API_SERVER + '/' + id)
+        .subscribe(() => this.status = 'Delete successful');
+
+     return this.status;   
+  }
 
 
   

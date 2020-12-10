@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { MenuItemService } from '../app/services/menu-item.service';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -6,20 +8,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
+  constructor(private service: MenuItemService, private router: Router) { }
+
+  logOut() {
+    debugger
+    this.service.invalidLogin = true;
+    this.router.navigate(["/list"]);
+  }
   
-  colSpan = 2;
-
-
-  title = "Angular Restaurant Project";
-  imagePath: string = 'https://www.google.com/logos/doodles/2020/december-holidays-day-1-6753651837108829.5-s.png';
-  
-  firstName: string = 'Mark';
-  lastName: string = 'Smith';
-
-  isDisabled = false;
-
-  getFullName(): string {
-    return this.firstName + " " + this.lastName;
+  ifLogin() {
+    return !this.service.invalidLogin;
   }
 
 }

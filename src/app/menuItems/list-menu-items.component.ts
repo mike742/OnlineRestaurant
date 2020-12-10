@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from '../model/menuItem.model';
 import { MenuItemService } from '../../app/services/menu-item.service';
+import { Router } from "@angular/router";
 
 @Component({
   //selector: 'app-list-menu-items',
@@ -9,9 +10,12 @@ import { MenuItemService } from '../../app/services/menu-item.service';
 })
 export class ListMenuItemsComponent implements OnInit {
 
-  menuItems?: MenuItem[];
+  menuItems: MenuItem[] = [];
   
-  constructor(private service: MenuItemService) { }
+  constructor(
+    private service: MenuItemService,
+    private router: Router,
+    ) { }
 
   ngOnInit(): void {
 
@@ -31,14 +35,39 @@ export class ListMenuItemsComponent implements OnInit {
     // if
 
     json.push( JSON.stringify( {'id': id, 'qty': qty } ) );
-    localStorage.setItem(  'cartData', JSON.stringify(json) );
-
-    console.log( localStorage.getItem('cartData') );
+    localStorage.setItem( 'cartData', JSON.stringify(json) );
   }
 
   clearCartData() : void {
-    localStorage.setItem( 'cartData', '' );
-    console.log( localStorage.getItem('cartData') );
+    localStorage.setItem( 'cartData', '' ); 
+  }
+ 
+  getMenuItems() {
+    this.service.get().subscribe((data: any[])=>{
+      console.log(data);
+      this.menuItems = data;
+    });    
+  }
+
+  getAll () {
+    return this.menuItems;
+  }
+
+  remove(id: number) {
+    const index = this.menuItems?.findIndex(c => c.id == id) || -1;
+    //debugger;
+
+    if (index > -1) {
+      this.menuItems.splice(+index, 1);
+    }
+    this.service.delete(id);
+    
+    /*
+    this.service.get().subscribe((data: any[])=>{
+      console.log(data);
+      this.menuItems = data;
+    });
+    */
   }
 
   ifLogin() {

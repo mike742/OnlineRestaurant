@@ -1,19 +1,26 @@
 <div class="container">
-<nav class="navbar navbar-inverse">
-    <ul class="nav navbar-nav">
-        <li>
-            <a routerLink='list'>Menu Items</a>
-        </li>
-        <li>
-            <a routerLink='create'>Create Menu Item</a>
-        </li>
-        <li>
-            <a routerLink='cart'>
-                Cart <span class="glyphicon glyphicon-shopping-cart"></span>
-            </a>
-        </li>
-    </ul>
-</nav>
+    <nav class="navbar navbar-inverse">
+        <ul class="nav navbar-nav navbar-left">
+            <li>
+                <a routerLink='list' class="glyphicon glyphicon-cutlery"></a>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li *ngIf="ifLogin()">
+                <a (click)='logOut()'>Logout</a>
+            </li>
+            <li *ngIf="!ifLogin()">
+                <a routerLink='/'>Login</a>
+            </li>
+            <li>
+                <a routerLink='list'>Menu Items</a>
+            </li>
+            <li>
+                <a routerLink='cart' class="glyphicon glyphicon-shopping-cart"></a>
+            </li>
 
-<router-outlet></router-outlet>
-</div> 
+        </ul>
+    </nav>  
+
+    <router-outlet></router-outlet>
+</div>  
